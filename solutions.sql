@@ -86,8 +86,8 @@ FROM
 	sales AS T3 ON T3.title_id = T2.title_id
 
 WHERE T3.qty IS NOT NULL
-GROUP BY T1.au_id, T1.au_lname, T1.au_fname, T3.qty
-ORDER BY T3.qty desc
+GROUP BY T1.au_id, T1.au_lname, T1.au_fname
+ORDER BY sum(T3.qty) desc
 LIMIT 3;
 
 -- Desafío 4 - Ranking de Autores Más Vendidos
@@ -108,5 +108,6 @@ FROM
 		LEFT JOIN
 	sales AS T3 ON T3.title_id = T2.title_id
 
-GROUP BY T1.au_id, T1.au_lname, T1.au_fname, T3.qty
-ORDER BY T3.qty desc;
+GROUP BY T1.au_id, T1.au_lname, T1.au_fname
+ORDER BY sum(T3.qty) desc
+;
